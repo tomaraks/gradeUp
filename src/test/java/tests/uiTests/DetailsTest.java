@@ -17,12 +17,12 @@ public class DetailsTest extends BaseTest {
     public void executeFlowTest() throws InterruptedException {
         System.out.println(loginPage.getURL());
         Thread.sleep(5000);
+        // Please enter user name and password
         HomePage homePage = loginPage.signInWithGoogle("akkilovesuridhi", "bpwL8Xps");
         Thread.sleep(15000);
         homePage.clickOnPreviousPapers();
         TestPage testPage = homePage.startTest();
         testPage.executeTests();
-        System.out.println("Total is :- " + TestPage.score);
 
         ResultsPage resultsPage = testPage.submitTests();
         HashMap<String, Integer> answers = resultsPage.getAllAnswers();
@@ -31,15 +31,13 @@ public class DetailsTest extends BaseTest {
         String score = resultsPage.getScore();
         String rank = resultsPage.getRank();
         String cutoff = resultsPage.getCutOff();
-        System.out.println("Score " + score);
-        System.out.println("Score " + rank);
-        System.out.println("Score " + cutoff);
-        ArrayList<String> headers = new ArrayList<String>();
+
+        ArrayList<String> headers = new ArrayList<>();
         headers.add("Score");
         headers.add("Rank");
         headers.add("Cut Off");
 
-        ArrayList<String> values = new ArrayList<String>();
+        ArrayList<String> values = new ArrayList<>();
         values.add(score);
         values.add(rank);
         values.add(cutoff);

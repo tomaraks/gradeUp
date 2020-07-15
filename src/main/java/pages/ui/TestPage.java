@@ -25,10 +25,10 @@ public class TestPage {
     }
 
     public void executeTests() throws InterruptedException {
-        score = new HashMap<String, Integer>();
+        score = new HashMap<>();
         WebElement header = driver.findElement(questionsHeader);
         List<WebElement> sectionList = driver.findElements(sections);
-        System.out.println("Number of sections are :-" + sectionList.size());
+
         JavascriptExecutor je = (JavascriptExecutor) driver;
         Actions actions = new Actions(driver);
         int count = 0;
@@ -46,9 +46,7 @@ public class TestPage {
                 count2++;
             }
             List<WebElement> questionList = section.findElements(questions);
-            System.out.println("Number of questions in this sections are :-" + questionList.size());
             for (WebElement question : questionList) {
-                System.out.println("I am on question " + question.getText());
                 int count1 = 0;
                 while (!question.isEnabled() && count1<5 && !question.isDisplayed()) {
                     Thread.sleep(2000);
@@ -78,7 +76,7 @@ public class TestPage {
                 selectAnswer(rand_int1, count);
                 count++;
             }
-            System.out.println("I am on section " + section.getText());
+
             String correct = section.getText().substring(section.getText().lastIndexOf("Correct(") + 8, section.getText().indexOf(")\n" + "Wrong"));
             String wrong = section.getText().substring(section.getText().indexOf("Wrong(") + 6, section.getText().indexOf(")\n" + "Unattempted"));
             String unattempt = section.getText().substring(section.getText().indexOf("Unattempted(") + 12, section.getText().lastIndexOf(")"));
