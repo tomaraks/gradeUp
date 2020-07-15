@@ -54,7 +54,7 @@ public class ExcelWriter {
         }
     }
 
-    public static void writeScoresToExcel(ArrayList<String> headers, HashMap<Integer, ArrayList> values) {
+    public static void writeScoresToExcel(ArrayList<String> headers, ArrayList<String> values) {
         // Blank workbook
         XSSFWorkbook workbook = new XSSFWorkbook();
 
@@ -65,10 +65,9 @@ public class ExcelWriter {
         Map<String, Object[]> data = new TreeMap<String, Object[]>();
         Object[] objArr1 = headers.toArray();
         data.put("1", objArr1);
-        for (int k = 0; k < values.size(); k++) {
-            Object[] objArr2 = values.get(k).toArray();
-            data.put("" + 2 + k, objArr2);
-        }
+        Object[] objArr2 = values.toArray();
+        data.put("2", objArr2);
+
 
         // Iterate over data and write to sheet
         Set<String> keyset = data.keySet();
@@ -88,7 +87,7 @@ public class ExcelWriter {
             }
         }
         try {
-            FileOutputStream out = new FileOutputStream(new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "test.xlsx"));   //creating a new file instance
+            FileOutputStream out = new FileOutputStream(new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "testNew.xlsx"));   //creating a new file instance
             workbook.write(out);
             out.close();
             System.out.println("Json is written successfully on Excel having file name as :- test.xlsx");

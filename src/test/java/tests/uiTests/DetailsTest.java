@@ -6,7 +6,9 @@ import org.testng.annotations.Test;
 import pages.ui.HomePage;
 import pages.ui.ResultsPage;
 import pages.ui.TestPage;
+import utilities.ExcelWriter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DetailsTest extends BaseTest {
@@ -32,5 +34,16 @@ public class DetailsTest extends BaseTest {
         System.out.println("Score " + score);
         System.out.println("Score " + rank);
         System.out.println("Score " + cutoff);
+        ArrayList<String> headers = new ArrayList<String>();
+        headers.add("Score");
+        headers.add("Rank");
+        headers.add("Cut Off");
+
+        ArrayList<String> values = new ArrayList<String>();
+        values.add(score);
+        values.add(rank);
+        values.add(cutoff);
+
+        ExcelWriter.writeScoresToExcel(headers, values);
     }
 }
